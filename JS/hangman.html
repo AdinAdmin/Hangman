@@ -24,9 +24,10 @@
 				}
 				
 				var remainingLetters = word.length;
-								
+				var tries = 7;
+
 				//игровой цикл
-				while (remainingLetters > 0 ){
+				while (remainingLetters > 0 && tries > 0 ){
 					//показываем игроку прогресс
 					alert(answerArray.join(" "));
 					//Варіанті відповідей від гравця
@@ -37,8 +38,9 @@
 					} else if(guess.length !== 1) {
 						alert("Please enter a single letter.");
 					}else{
+						tries--;
 						for(var j = 0; j < word.length; j++){
-							if (word[j] === guess) {
+							if (word[j] === guess && answerArray[j] === "_") {
 								answerArray[j] = guess;
 								remainingLetters--;
 							}
@@ -49,7 +51,12 @@
 				}
 				// print answer
 				alert(answerArray.join(" "));
-				alert("Good job! The answer was " + word);
+
+				if(tries > 0){
+					alert("Good job! The answer was " + word);
+				}else{
+					alert("You lose! The answer was " + word);
+				}
 		</script>
 	</body>
 </html>
